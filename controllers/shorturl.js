@@ -47,8 +47,15 @@ const shorternUrl = async (req, res) => {
   });
 };
 
-const parse = (req, res) => {
-  res.redirect("https://google.com");
+const parse = async (req, res) => {
+  const { urlId } = req.params;
+  const foundItem = await ShortUrl.findOne({ urlId });
+  if (!foundItem) {
+    return res.status(400).json({
+      error: "No short URL found for the given input",
+    });
+  }
+  res.redirect(foundItem.originalUrl);
 };
 
 module.exports = {
