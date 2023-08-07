@@ -4,8 +4,15 @@ const short = require("shortid");
 
 const shorternUrl = (req, res) => {
   const { url } = req.body;
-  const urlObj = new URL(url);
-  dns.lookup(urlObj.hostname, (err, address, family) => {
+  let urlObj;
+  try {
+    urlObj = new URL(url);
+  } catch (err) {
+    return res.json({
+      error: "Invalid URL",
+    });
+  }
+  dns.lookup(urlObj?.hostname, (err, address, family) => {
     if (err) {
       console.log("error happen!!!!");
       return res.json({
