@@ -12,7 +12,7 @@ const shorternUrl = (req, res) => {
       error: "Invalid URL",
     });
   }
-  dns.lookup(urlObj?.hostname, (err, address, family) => {
+  dns.lookup(urlObj?.href, (err, address, family) => {
     if (err) {
       console.log("error happen!!!!");
       return res.json({
