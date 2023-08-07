@@ -1,5 +1,6 @@
 const dns = require("node:dns");
 const { URL } = require("node:url");
+const short = require("shortid");
 
 const shorternUrl = (req, res) => {
   const { url } = req.body;
@@ -11,7 +12,10 @@ const shorternUrl = (req, res) => {
         error: "Invalid URL",
       });
     }
-    res.json("shortern url");
+    const urlId = short();
+    res.json({
+      urlId,
+    });
   });
 };
 
