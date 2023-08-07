@@ -1,9 +1,10 @@
 const shorternUrl = (req, res) => {
+  console.log(req.body);
   res.json("shortern url");
 };
 
 const parse = (req, res) => {
-  res.json("parse");
+  res.redirect("https://google.com");
 };
 
 module.exports = {

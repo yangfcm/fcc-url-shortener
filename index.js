@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+
 const app = express();
 const shorturlRouter = require("./routers/shorturl");
 
@@ -8,6 +10,7 @@ const shorturlRouter = require("./routers/shorturl");
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/public", express.static(`${process.cwd()}/public`));
 
