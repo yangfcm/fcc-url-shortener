@@ -15,7 +15,6 @@ const shorternUrl = async (req, res) => {
   }
   dns.lookup(urlObj.hostname, async (err, address, family) => {
     if (err) {
-      console.log("error happen!!!!");
       return res.json({
         error: "Invalid URL",
       });
